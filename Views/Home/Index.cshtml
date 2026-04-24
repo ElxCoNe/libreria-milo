@@ -1,0 +1,134 @@
+﻿@{
+    ViewData["Title"] = "Inicio";
+}
+
+<div class="container py-5">
+
+    <section class="row align-items-center mb-5">
+        <div class="col-md-6">
+            <span class="badge bg-warning text-dark mb-3">
+                Sistema de Administración
+            </span>
+
+            <h1 class="display-4 fw-bold mb-3">
+                Bienvenido a LibreriaMilo
+            </h1>
+
+            <p class="lead text-muted mb-4">
+                Administra usuarios, libros y préstamos de manera simple, organizada y eficiente.
+            </p>
+
+            <div class="d-flex gap-2 flex-wrap">
+                <a asp-controller="Book" asp-action="Index" class="btn btn-primary btn-lg">
+                    Ver Libros
+                </a>
+
+                <a asp-controller="Loan" asp-action="Index" class="btn btn-outline-dark btn-lg">
+                    Gestionar Préstamos
+                </a>
+            </div>
+        </div>
+
+        <div class="col-md-6 text-center mt-4 mt-md-0">
+            <div class="bg-light border rounded-4 shadow-sm p-5">
+                <div class="display-1 mb-3">
+                    📚
+                </div>
+
+                <h3 class="fw-bold">
+                    Tu biblioteca en orden
+                </h3>
+
+                <p class="text-muted mb-0">
+                    Controla el catálogo, el stock y los préstamos desde un solo lugar.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="row g-4 mb-5">
+
+        <div class="col-md-4">
+            <div class="card h-100 shadow-sm border-0">
+                <div class="card-body text-center p-4">
+                    <div class="display-5 mb-3">
+                        👤
+                    </div>
+
+                    <h4 class="card-title fw-bold">
+                        Usuarios
+                    </h4>
+
+                    <p class="card-text text-muted">
+                        Registra y administra los usuarios que realizan préstamos en la librería.
+                    </p>
+
+                    <a asp-controller="User" asp-action="Index" class="btn btn-outline-primary">
+                        Ir a Usuarios
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card h-100 shadow-sm border-0">
+                <div class="card-body text-center p-4">
+                    <div class="display-5 mb-3">
+                        📖
+                    </div>
+
+                    <h4 class="card-title fw-bold">
+                        Libros
+                    </h4>
+
+                    <p class="card-text text-muted">
+                        Gestiona títulos, autores, categorías, cantidades disponibles y estado de los libros.
+                    </p>
+
+                    <a asp-controller="Book" asp-action="Index" class="btn btn-outline-success">
+                        Ir a Libros
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card h-100 shadow-sm border-0">
+                <div class="card-body text-center p-4">
+                    <div class="display-5 mb-3">
+                        🔖
+                    </div>
+
+                    <h4 class="card-title fw-bold">
+                        Préstamos
+                    </h4>
+
+                    <p class="card-text text-muted">
+                        Crea préstamos seleccionando un usuario y un libro disponible del catálogo.
+                    </p>
+
+                    <a asp-controller="Loan" asp-action="Index" class="btn btn-outline-warning">
+                        Ir a Préstamos
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <section class="bg-dark text-light rounded-4 p-4 p-md-5 text-center">
+        <h2 class="fw-bold mb-3">
+            Gestión básica para una librería organizada
+        </h2>
+
+        <p class="text-light opacity-75 mb-4">
+            Este sistema permite controlar usuarios registrados, libros disponibles y préstamos activos,
+            aplicando el CRUD enseñado jejegod.
+        </p>
+
+        <a asp-controller="Book" asp-action="Create" class="btn btn-warning btn-lg">
+            Registrar nuevo libro
+        </a>
+    </section>
+
+</div>

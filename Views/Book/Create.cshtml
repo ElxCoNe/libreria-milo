@@ -1,0 +1,81 @@
+@model IEnumerable<LibreriaMilo.Models.Book>
+
+@{
+    ViewData["Title"] = "Libros";
+}
+
+<div class="container mt-4">
+
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2>Libros</h2>
+
+        <a asp-action="Create" class="btn btn-primary">
+            Crear Libro
+        </a>
+    </div>
+
+    @if (Model != null && Model.Any())
+    {
+        <table class="table table-striped table-bordered">
+            <thead class="table-dark">
+                <tr>
+                    <th>Id</th>
+                    <th>Título</th>
+                    <th>Autor</th>
+                    <th>Categoría</th>
+                    <th>Cantidad</th>
+                    <th>Stock</th>
+                    <th>Estado</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (var book in Model)
+                {
+                    <tr>
+                        <td>@book.Id</td>
+                        <td>@book.Title</td>
+                        <td>@book.Author</td>
+                        <td>@book.Category</td>
+                        <td>@book.Quantity</td>
+                        <td>@book.Stock</td>
+                        <td>
+                            @if (book.Status == LibreriaMilo.Models.BookStatus.Available)
+                            {
+                                <span class="badge bg-success">Disponible</span>
+                            }
+                            else if (book.Status == LibreriaMilo.Models.BookStatus.Loaned)
+                            {
+                                <span class="badge bg-warning text-dark">Prestado</span>
+                            }
+                            else
+                            {
+                                <span class="badge bg-secondary">Mantenimiento</span>
+                            }
+                        </td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@book.Id" class="btn btn-warning btn-sm">
+                                Editar
+                            </a>
+
+                            <a asp-action="Delete"
+                               asp-route-id="@book.Id"
+                               class="btn btn-danger btn-sm"
+                               onclick="return confirm('¿Está seguro de eliminar este libro?');">
+                                Eliminar
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <div class="alert alert-info">
+            No hay libros registrados.
+        </div>
+    }
+
+</div>

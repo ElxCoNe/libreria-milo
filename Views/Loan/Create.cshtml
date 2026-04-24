@@ -1,0 +1,94 @@
+@model LibreriaMilo.Models.Loan
+
+@{
+    ViewData["Title"] = "Crear Préstamo";
+
+    var users = ViewBag.Users as IEnumerable<LibreriaMilo.Models.User>;
+    var books = ViewBag.Books as IEnumerable<LibreriaMilo.Models.Book>;
+}
+
+<div class="container mt-4">
+
+    <h2>Crear Préstamo</h2>
+
+    @if (ViewBag.ErrorMessage != null)
+    {
+        <div class="alert alert-danger">
+            @ViewBag.ErrorMessage
+        </div>
+    }
+
+    <form asp-action="Create" method="post">
+
+        <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+        <div class="mb-3">
+            <label asp-for="UserId" class="form-label">Usuario</label>
+            <select asp-for="UserId" class="form-select">
+                <option value="">Seleccione un usuario</option>
+
+                @if (users != null)
+                {
+                    foreach (var user in users)
+                    {
+                        <option value="@user.Id">
+                            @user.Name @user.LastName - @user.Email
+                        </option>
+                    }
+                }
+            </select>
+            <span asp-validation-for="UserId" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="BookId" class="form-label">Libro</label>
+            <select asp-for="BookId" class="form-select">
+                <option value="">Seleccione un libro</option>
+
+                @if (books != null)
+                {
+                    foreach (var book in books)
+                    {
+                        <option value="@book.Id">
+                            @book.Title - Stock: @book.Stock
+                        </option>
+                    }
+                }
+            </select>
+            <span asp-validation-for="BookId" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="DueDate" class="form-label">Fecha límite de devolución</label>
+            <input asp-for="DueDate" class="form-control" type="date" />
+            <span asp-validation-for="DueDate" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Status" class="form-label">Estado</label>
+            <select asp-for="Status"
+                    asp-items="Html.GetEnumSelectList<LibreriaMilo.Models.LoanStatus>()"
+                    class="form-select">
+            </select>
+            <span asp-validation-for="Status" class="text-danger"></span>
+        </div>
+
+        <div class="d-flex gap-2">
+            <button type="submit" class="btn btn-success">
+                Guardar
+            </button>
+
+            <a asp-action="Index" class="btn btn-secondary">
+                Volver
+            </a>
+        </div>
+
+    </form>
+
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

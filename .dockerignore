@@ -1,0 +1,4 @@
+﻿/.gitignore
+bin/
+obj/
+.idea/

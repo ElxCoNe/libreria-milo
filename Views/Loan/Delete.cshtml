@@ -1,0 +1,74 @@
+@model LibreriaMilo.Models.Loan
+
+@{
+    ViewData["Title"] = "Eliminar Préstamo";
+}
+
+<div class="container mt-4">
+
+    <h2>Eliminar Préstamo</h2>
+
+    <div class="alert alert-warning">
+        ¿Está seguro de que desea eliminar este préstamo?
+    </div>
+
+    <div class="card mb-3">
+        <div class="card-body">
+
+            <p>
+                <strong>Usuario:</strong>
+                @if (Model.User != null)
+                {
+                    @($"{Model.User.Name} {Model.User.LastName}")
+                }
+                else
+                {
+                    <span class="text-muted">Sin usuario</span>
+                }
+            </p>
+
+            <p>
+                <strong>Libro:</strong>
+                @if (Model.Book != null)
+                {
+                    @Model.Book.Title
+                }
+                else
+                {
+                    <span class="text-muted">Sin libro</span>
+                }
+            </p>
+
+            <p>
+                <strong>Fecha préstamo:</strong>
+                @Model.DateLoan.ToString("dd/MM/yyyy")
+            </p>
+
+            <p>
+                <strong>Fecha límite:</strong>
+                @Model.DueDate.ToString("dd/MM/yyyy")
+            </p>
+
+            <p>
+                <strong>Estado:</strong>
+                @Model.Status
+            </p>
+
+        </div>
+    </div>
+
+    <form asp-action="Delete" method="post">
+
+        <input type="hidden" asp-for="Id" />
+
+        <button type="submit" class="btn btn-danger">
+            Eliminar
+        </button>
+
+        <a asp-action="Index" class="btn btn-secondary">
+            Cancelar
+        </a>
+
+    </form>
+
+</div>
